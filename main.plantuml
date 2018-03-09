@@ -1,0 +1,36 @@
+@startuml
+
+title RoR Future Design
+
+class SimController {
+    Handles all gameplay simulation
+    (only logic + sound, no graphics)
+    --
+}
+
+class PhysicsWorld {
+    Manages raw softbodies - just dynamics and collisions, no gfx.
+    Manages actors and static terrain objects
+    --
+}
+
+class Actor {
+    Raw softbody
+}
+
+class Scripting {
+    Reads and updates flexbodies and
+    other sim state to implement gameplay logic
+    --
+}
+
+class GfxScene {
+    Reads data from SimController (which reads PhysicsWorld)
+    and maintains a visual representation of it
+    --
+}
+
+PhysicsWorld "1" *-- "0..*" Actor
+PhysicsWorld -- GfxScene : copy N/B positions >
+
+@enduml
