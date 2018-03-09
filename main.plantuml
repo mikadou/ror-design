@@ -30,7 +30,9 @@ class GfxScene {
     --
 }
 
+SimController "1" *-- "1" PhysicsWorld : controls >
+SimController "1" *-- "1" GfxScene : controls >
 PhysicsWorld "1" *-- "0..*" Actor
-PhysicsWorld -- GfxScene : copy N/B positions >
+PhysicsWorld -right- GfxScene : copy N/B positions >
 
 @enduml
